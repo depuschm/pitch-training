@@ -1,4 +1,4 @@
-let instrumentSelect = document.getElementById("instrument");
+let instrumentSelect = document.getElementById("selectInstrument");
 let instrument = instrumentSelect.value.split(':');
 
 let generalMIDINumber = instrument[0];
@@ -8,7 +8,7 @@ let delay = 0; // play one note every quarter second
 let velocity = 127; // how hard the note hits
 let volume = 63; // how loud the note is
 
-window.onload = function () {
+function initAudio() {
 	instrumentSelect.addEventListener('change', function() {
 		instrument = instrumentSelect.value.split(':');
 		generalMIDINumber = instrument[0];
@@ -16,7 +16,7 @@ window.onload = function () {
 		LoadMIDIPlugin();
 	});
 	LoadMIDIPlugin();
-};
+}
 
 /**
  * MIDI instrument codes:

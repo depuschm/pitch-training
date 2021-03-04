@@ -10,45 +10,47 @@ let totalWidth;
 let offsetX;
 
 let buttonsWhite = document.getElementById("button-white");
-for (i = 0; i < amountWhiteNotes; i++) {
-	let noteIndex = (i + startNote) % notesWhite.length;
-	let octave = Math.floor((i + startNote) / notesWhite.length);
-	if (notesWhite[noteIndex].length > 0) {
-		button = addButton(buttonsWhite, noteIndex, octave);
-		button.className += ' white';
-		
-		// Text
-		let octavePart = "";
-		if (noteIndex == 0) octavePart = "<sub>" + octave + "</sub>"
-		button.innerHTML = notesWhite[noteIndex] + octavePart;
-		
-		// Position
-		offsetX = i * offsetXIncreaseWhite;
-		button.style.left = offsetX + "px";
-	}
-}
-totalWidth = offsetX + offsetXIncreaseWhite;
-
 let buttonsBlack = document.getElementById("button-black");
-buttons = buttonsBlack.children;
-for (i = 0; i < (amountWhiteNotes - 1); i++) {
-	let noteIndex = (i + startNote) % notesBlack.length;
-	let octave = Math.floor((i + startNote) / notesBlack.length);
-	if (notesBlack[noteIndex].length > 0) {
-		button = addButton(buttonsBlack, noteIndex, octave);
-		button.className += ' black';
-		
-		// Text
-		button.innerHTML = notesBlack[noteIndex];
-		
-		// Position
-		offsetX = i * offsetXIncreaseWhite + offsetXIncreaseBlack;
-		button.style.left = offsetX + "px";
-	}
-}
-
 let buttonsParent = document.getElementById("buttons");
-centerButtons(buttonsParent);
+
+function initKeyboard() {
+	for (i = 0; i < amountWhiteNotes; i++) {
+		let noteIndex = (i + startNote) % notesWhite.length;
+		let octave = Math.floor((i + startNote) / notesWhite.length);
+		if (notesWhite[noteIndex].length > 0) {
+			button = addButton(buttonsWhite, noteIndex, octave);
+			button.className += ' white';
+			
+			// Text
+			let octavePart = "";
+			if (noteIndex == 0) octavePart = "<sub>" + octave + "</sub>"
+			button.innerHTML = notesWhite[noteIndex] + octavePart;
+			
+			// Position
+			offsetX = i * offsetXIncreaseWhite;
+			button.style.left = offsetX + "px";
+		}
+	}
+	totalWidth = offsetX + offsetXIncreaseWhite;
+
+	buttons = buttonsBlack.children;
+	for (i = 0; i < (amountWhiteNotes - 1); i++) {
+		let noteIndex = (i + startNote) % notesBlack.length;
+		let octave = Math.floor((i + startNote) / notesBlack.length);
+		if (notesBlack[noteIndex].length > 0) {
+			button = addButton(buttonsBlack, noteIndex, octave);
+			button.className += ' black';
+			
+			// Text
+			button.innerHTML = notesBlack[noteIndex];
+			
+			// Position
+			offsetX = i * offsetXIncreaseWhite + offsetXIncreaseBlack;
+			button.style.left = offsetX + "px";
+		}
+	}
+	centerButtons(buttonsParent);
+}
 
 function addButton(parent, noteIndex, octave) {
 	let button = document.createElement('span');

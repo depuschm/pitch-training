@@ -126,18 +126,34 @@ const videos = {
 	"C8": []
 };
 
+let videosCheckbox = document.getElementById("checkboxVideos");
+let lastParent, lastNoteIndex, lastOctave;
+
+function initVideos() {
+	videosCheckbox.addEventListener('change', function() {
+		if (lastParent != null) {
+			loadVideos(lastParent, lastNoteIndex, lastOctave);
+		}
+	});
+}
+
 function loadVideos(parent, noteIndex, octave) {
 	videoParent.innerHTML = "";
 	
-	let note = notesWhite[noteIndex];
-	if (parent == buttonsBlack) note = notesBlack[noteIndex];
-	note += octave;
-	
-	for (const [key, value] of Object.entries(videos)) {
-		if (note == key) {
-			addVideo(videoParent, value);
+	if (videosCheckbox.checked) {
+		let note = notesWhite[noteIndex];
+		if (parent == buttonsBlack) note = notesBlack[noteIndex];
+		note += octave;
+		
+		for (const [key, value] of Object.entries(videos)) {
+			if (note == key) {
+				addVideo(videoParent, value);
+			}
 		}
 	}
+	lastParent = parent;
+	lastNoteIndex = noteIndex;
+	lastOctave = octave;
 }
 
 function addVideo(parent, sources) {

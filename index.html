@@ -28,7 +28,8 @@
 	<div class="center">
 		<h1>Perfect Pitch Training</h1>
 		
-		<select id="instrument">
+		<label for="selectInstrument">Instrument:</label>
+		<select id="selectInstrument">
 			<option value="0:acoustic_grand_piano" selected="selected">Acoustic Grand Piano</option>
 			<option value="1:bright_acoustic_piano" >Bright Acoustic Piano</option>
 			<option value="2:electric_grand_piano" >Electric Grand Piano</option>
@@ -157,7 +158,11 @@
 			<option value="125:helicopter" >Helicopter</option>
 			<option value="126:applause" >Applause</option>
 			<option value="127:gunshot" >Gunshot</option>
-		</select><br><br>
+		</select><br>
+		
+		<label for="checkboxVideos">Recommend videos</label>
+		<input id="checkboxVideos" type="checkbox" checked>
+		<br><br>
 		
 		<!--<img src="res/img/not_used/88-key-piano-keyboard-layout.png">-->
 		<div id="buttons">
@@ -168,9 +173,9 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="res/js/main.js"></script>
-	<script src="res/js/audio.js"></script>
 	<script src="res/js/videos.js"></script>
+	<script src="res/js/audio.js"></script>
 	<script src="res/js/keyboard.js"></script>
+	<script src="res/js/main.js"></script>
 </body>
 </html>
