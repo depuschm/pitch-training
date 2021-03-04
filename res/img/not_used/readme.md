@@ -1,0 +1,1 @@
+- 88 Piano Keyboard Image: https://www.yamaha-keyboard-guide.com/images/88-key-piano-keyboard-layout.jpg
