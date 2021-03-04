@@ -50,19 +50,14 @@ const videos = {
 	"D4": [
 		"https://www.youtube.com/embed/6QW4mQwmxec?start=16&end=22",
 		"https://www.youtube.com/embed/jS_ykANWJlg?start=4&end=10",
-		"https://www.youtube.com/embed/lBcnlJclqxs?start=46&end=54",
 		"https://www.youtube.com/embed/Z98nLn4u158?start=18&end=25"
 	],
 	"D#4": [],
-	"E4": [
-		"https://www.youtube.com/embed/3jOsHod6zWM?start=7&end=19"
-	],
+	"E4": [],
 	"F4": [
 		"https://www.youtube.com/embed/eFVaaRO_KoI?start=1&end=9"
 	],
-	"F#4": [
-		"https://www.youtube.com/embed/UanB-mS1vgk?start=4&end=9"
-	],
+	"F#4": [],
 	"G4": [
 		"https://www.youtube.com/embed/r2Sf8_X3R90?start=19&end=26"
 	],
@@ -70,12 +65,9 @@ const videos = {
 		"https://www.youtube.com/embed/hiTclNHIZU4?start=30&end=36"
 	],
 	"A4": [
-		"https://www.youtube.com/embed/7nGp7rIpM0E?start=25&end=29",
-		"https://www.youtube.com/embed/5i-DwAl-rhU?start=1&end=7"
+		"https://www.youtube.com/embed/7nGp7rIpM0E?start=25&end=29"
 	],
-	"A#4": [
-		"https://www.youtube.com/embed/UIXthxvnSwY?start=3&end=12"
-	],
+	"A#4": [],
 	"B4": [
 		"https://www.youtube.com/embed/90ZZYY98NPo?start=18&end=26",
 		"https://www.youtube.com/embed/pouxqiySdI8?start=56&end=62"
@@ -83,15 +75,26 @@ const videos = {
 	
 	"C5": [],
 	"C#5": [],
-	"D5": [],
+	"D5": [
+		"https://www.youtube.com/embed/lBcnlJclqxs?start=46&end=54"
+	],
 	"D#5": [],
-	"E5": [],
+	"E5": [
+		"https://www.youtube.com/embed/3jOsHod6zWM?start=7&end=19",
+		"https://www.youtube.com/embed/OzNhUtHutIg?start=3&end=6"
+	],
 	"F5": [],
-	"F#5": [],
+	"F#5": [
+		"https://www.youtube.com/embed/UanB-mS1vgk?start=4&end=9"
+	],
 	"G5": [],
 	"G#5": [],
-	"A5": [],
-	"A#5": [],
+	"A5": [
+		"https://www.youtube.com/embed/5i-DwAl-rhU?start=1&end=7"
+	],
+	"A#5": [
+		"https://www.youtube.com/embed/UIXthxvnSwY?start=3&end=12"
+	],
 	"B5": [],
 	
 	"C6": [],

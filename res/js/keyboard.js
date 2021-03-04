@@ -56,6 +56,7 @@ function addButton(parent, noteIndex, octave) {
 	button.style.cursor = 'pointer';
 	button.addEventListener("click", function() {
 		colorButtons(button);
+		playAudio(parent, noteIndex, octave);
 		loadVideos(parent, noteIndex, octave);
 	});
 	return parent.appendChild(button);  
