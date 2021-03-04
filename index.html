@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns = "http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="res/css/main.css">
@@ -28,10 +28,8 @@
 	<div class="center">
 		<h1>Perfect Pitch Training</h1>
 		
-		<form method="post" action="#">
-			<select name="numname" onchange="this.form.submit();">
-
-			<option value="0:acoustic_grand_piano"  selected="selected">Acoustic Grand Piano</option>
+		<select id="instrument">
+			<option value="0:acoustic_grand_piano" selected="selected">Acoustic Grand Piano</option>
 			<option value="1:bright_acoustic_piano" >Bright Acoustic Piano</option>
 			<option value="2:electric_grand_piano" >Electric Grand Piano</option>
 			<option value="3:honkytonk_piano" >Honky-tonk Piano</option>
@@ -159,8 +157,7 @@
 			<option value="125:helicopter" >Helicopter</option>
 			<option value="126:applause" >Applause</option>
 			<option value="127:gunshot" >Gunshot</option>
-			</select>
-		</form><br>
+		</select><br><br>
 		
 		<!--<img src="res/img/not_used/88-key-piano-keyboard-layout.png">-->
 		<div id="buttons">
