@@ -12,12 +12,15 @@ let offsetX;
 let buttonsWhite = document.getElementById("button-white");
 for (i = 0; i < amountWhiteNotes; i++) {
 	let noteIndex = (i + startNote) % notesWhite.length;
+	let octave = Math.floor((i + startNote) / notesWhite.length);
 	if (notesWhite[noteIndex].length > 0) {
-		button = addButton(buttonsWhite, noteIndex);
+		button = addButton(buttonsWhite, noteIndex, octave);
 		button.className += ' white';
 		
 		// Text
-		button.innerHTML = notesWhite[noteIndex];
+		let octavePart = "";
+		if (noteIndex == 0) octavePart = "<sub>" + octave + "</sub>"
+		button.innerHTML = notesWhite[noteIndex] + octavePart;
 		
 		// Position
 		offsetX = i * offsetXIncreaseWhite;
@@ -30,8 +33,9 @@ let buttonsBlack = document.getElementById("button-black");
 buttons = buttonsBlack.children;
 for (i = 0; i < (amountWhiteNotes - 1); i++) {
 	let noteIndex = (i + startNote) % notesBlack.length;
+	let octave = Math.floor((i + startNote) / notesBlack.length);
 	if (notesBlack[noteIndex].length > 0) {
-		button = addButton(buttonsBlack, noteIndex);
+		button = addButton(buttonsBlack, noteIndex, octave);
 		button.className += ' black';
 		
 		// Text
@@ -46,13 +50,13 @@ for (i = 0; i < (amountWhiteNotes - 1); i++) {
 let buttonsParent = document.getElementById("buttons");
 centerButtons(buttonsParent);
 
-function addButton(parent, noteIndex) {
+function addButton(parent, noteIndex, octave) {
 	let button = document.createElement('span');
 	button.className = 'button';
 	button.style.cursor = 'pointer';
 	button.addEventListener("click", function() {
 		colorButtons(button);
-		loadVideos(parent, noteIndex);
+		loadVideos(parent, noteIndex, octave);
 	});
 	return parent.appendChild(button);  
 }
