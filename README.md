@@ -3,8 +3,8 @@ A [website](https://rayo3.github.io/pitch-training) designed for perfect pitch t
 
 ### Technologies used
 These technologies are used to develop this website:
-- [MIDI.js](https://github.com/mudcube/MIDI.js) (used to play MIDI sounds, [Licence](https://github.com/mudcube/MIDI.js/blob/master/LICENSE.txt))
-- [MIDI Soundfonts](https://github.com/gleitz/midi-js-soundfonts) (pre-rendered general MIDI soundfonts, Licence [[Repository](https://github.com/gleitz/midi-js-soundfonts/blob/gh-pages/LICENSE.txt)][[FluidR3_GM](https://creativecommons.org/licenses/by/3.0/us/)])
+- [MIDI.js](https://github.com/mudcube/MIDI.js) (used to play MIDI sounds, [License](https://github.com/mudcube/MIDI.js/blob/master/LICENSE.txt))
+- [MIDI Soundfonts](https://github.com/gleitz/midi-js-soundfonts) (pre-rendered general MIDI soundfonts, License [[Repository](https://github.com/gleitz/midi-js-soundfonts/blob/gh-pages/LICENSE.txt)][[FluidR3_GM](https://creativecommons.org/licenses/by/3.0/us/)])
 
 ## Related links
 - [Wikipedia link about scientific pitch notation](https://en.wikipedia.org/wiki/Scientific_pitch_notation)
