@@ -2,218 +2,26 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<style>
-		#buttons {
-		  position: absolute;
-		  left: 50%;
-		}
-		
-		#videos {
-		  position: absolute;
-		  margin-left: -6px;
-		  top: 160px;
-		}
-		
-		.button {
-		  border: none;
-		  text-decoration: none;
-		  display: inline-block;
-		  margin-left: -6px;
-		  position: absolute;
-		}
-		
-		.white {
-			background-color: white;
-			border: 2px solid black;
-			color: black;
-			width: 22px;
-			height: 142px;
-			line-height: 15;
-			font-size: 16px;
-		}
-		
-		.black {
-			background-color: black;
-			color: white;
-			width: 17px;
-			height: 100px;
-			line-height: 4;
-			font-size: 12px;
-		}
-		
-		.center {
-		  display: table;
-		  margin: auto;
-		  
-		  text-align: center;
-		}
-	</style>
+	
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="res/css/main.css">
+	<link rel="stylesheet" href="res/css/keyboard.css">
+	<link rel="stylesheet" href="res/css/videos.css">
 </head>
 <body>
-<div class="center">
-	<h1>Perfect Pitch Training</h1>
-	<!--<img src="res/img/not_used/88-key-piano-keyboard-layout.png">-->
-	<div id="buttons">
-		<div id="button-white"></div>
-		<div id="button-black"></div>
-		<div id="videos"><div>
+	<div class="center">
+		<h1>Perfect Pitch Training</h1>
+		<!--<img src="res/img/not_used/88-key-piano-keyboard-layout.png">-->
+		<div id="buttons">
+			<div id="button-white"></div>
+			<div id="button-black"></div>
+			<div id="videos"><div>
+		</div>
 	</div>
-</div>
 
-<script>
-	const videoParent = document.getElementById("videos");
-	const videos = {
-		"C": [
-		],
-		"C#": [
-			"https://www.youtube.com/embed/4HIKME11MUk?start=10&end=14"
-		],
-		"D": [
-			"https://www.youtube.com/embed/6QW4mQwmxec?start=16&end=22",
-			"https://www.youtube.com/embed/jS_ykANWJlg?start=4&end=10",
-			"https://www.youtube.com/embed/lBcnlJclqxs?start=46&end=54",
-			"https://www.youtube.com/embed/Z98nLn4u158?start=18&end=25"
-		],
-		"D#": [
-		],
-		"E": [
-			"https://www.youtube.com/embed/3jOsHod6zWM?start=7&end=19"
-		],
-		"F": [
-			"https://www.youtube.com/embed/eFVaaRO_KoI?start=1&end=9"
-		],
-		"F#": [
-			"https://www.youtube.com/embed/UanB-mS1vgk?start=4&end=9"
-		],
-		"G": [
-			"https://www.youtube.com/embed/r2Sf8_X3R90?start=19&end=26"
-		],
-		"G#": [
-			"https://www.youtube.com/embed/hiTclNHIZU4?start=30&end=36"
-		],
-		"A": [
-			"https://www.youtube.com/embed/7nGp7rIpM0E?start=25&end=29",
-			"https://www.youtube.com/embed/5i-DwAl-rhU?start=1&end=7"
-		],
-		"A#": [
-			"https://www.youtube.com/embed/UIXthxvnSwY?start=3&end=12"
-		],
-		"B": [
-			"https://www.youtube.com/embed/90ZZYY98NPo?start=18&end=26",
-			"https://www.youtube.com/embed/pouxqiySdI8?start=56&end=62"
-		]
-	};
-	
-	const notesWhite = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
-	const notesBlack = ['C#', 'D#', '', 'F#', 'G#', 'A#', ''];
-	const startNote = 5;
-	const amountWhiteNotes = 52;
-	const offsetXIncreaseWhite = 24;
-	const offsetXIncreaseBlack = 17;
-	let button;
-	let lastButtonClicked;
-	let totalWidth;
-	let offsetX;
-	
-	let buttonsWhite = document.getElementById("button-white");
-	for (i = 0; i < amountWhiteNotes; i++) {
-		let noteIndex = (i + startNote) % notesWhite.length;
-		if (notesWhite[noteIndex].length > 0) {
-			button = addButton(buttonsWhite, noteIndex);
-			button.className += ' white';
-			
-			// Text
-			button.innerHTML = notesWhite[noteIndex];
-			
-			// Position
-			offsetX = i * offsetXIncreaseWhite;
-			button.style.left = offsetX + "px";
-		}
-	}
-	totalWidth = offsetX + offsetXIncreaseWhite;
-	
-	let buttonsBlack = document.getElementById("button-black");
-	buttons = buttonsBlack.children;
-	for (i = 0; i < (amountWhiteNotes - 1); i++) {
-		let noteIndex = (i + startNote) % notesBlack.length;
-		if (notesBlack[noteIndex].length > 0) {
-			button = addButton(buttonsBlack, noteIndex);
-			button.className += ' black';
-			
-			// Text
-			button.innerHTML = notesBlack[noteIndex];
-			
-			// Position
-			offsetX = i * offsetXIncreaseWhite + offsetXIncreaseBlack;
-			button.style.left = offsetX + "px";
-		}
-	}
-	
-	let buttonsParent = document.getElementById("buttons");
-	centerButtons(buttonsParent);
-	
-	function addButton(parent, noteIndex) {
-		let button = document.createElement('span');
-		button.className = 'button';
-		button.style.cursor = 'pointer';
-		button.addEventListener("click", function() {
-			colorButtons(button);
-			loadVideos(parent, noteIndex);
-		});
-		return parent.appendChild(button);  
-	}
-	
-	function colorButtons(button) {
-		if (lastButtonClicked != null) {
-			uncolorButton(lastButtonClicked);
-		}
-		colorButton(button);
-		
-		lastButtonClicked = button;
-	}
-	
-	function uncolorButton(button) {
-		if (button.classList.contains("white")) {
-			button.style.backgroundColor = "white"; 
-		} else {
-			button.style.backgroundColor = "black";
-		}
-	}
-	
-	function colorButton(button) {
-		if (button.classList.contains("white")) {
-			button.style.backgroundColor = "rgb(190, 230, 230)"; 
-		} else {
-			button.style.backgroundColor = "rgb(0, 128, 128)";
-		}
-	}
-	
-	function centerButtons(parent) {
-		let marginLeft = 5 - (totalWidth / 2);
-		parent.style.marginLeft = marginLeft + "px";
-	}
-	
-	function loadVideos(parent, noteIndex) {
-		videoParent.innerHTML = "";
-		for (const [key, value] of Object.entries(videos)) {
-			if (parent == buttonsWhite && notesWhite[noteIndex] == key ||
-				parent == buttonsBlack && notesBlack[noteIndex] == key) {
-				addVideo(videoParent, value);
-			}
-		}
-	}
-	
-	function addVideo(parent, sources) {
-		for (i = 0; i < sources.length; i++) {
-			let source = sources[i];
-			let video = document.createElement('iframe');
-			video.width = 560;
-			video.height = 315;
-			video.src = source;
-			video.frameBorder = 0;
-			parent.appendChild(video);
-		}
-	}
-</script>
+	<!-- Scripts -->
+	<script src="res/js/main.js"></script>
+	<script src="res/js/videos.js"></script>
+	<script src="res/js/keyboard.js"></script>
 </body>
 </html>
