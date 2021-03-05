@@ -9,9 +9,9 @@ let lastButtonClicked;
 let totalWidth;
 let offsetX;
 
-let buttonsWhite = document.getElementById("button-white");
-let buttonsBlack = document.getElementById("button-black");
-let buttonsParent = document.getElementById("buttons");
+const buttonsWhite = document.getElementById("button-white");
+const buttonsBlack = document.getElementById("button-black");
+const buttonsParent = document.getElementById("buttons");
 
 function initKeyboard() {
 	for (i = 0; i < amountWhiteNotes; i++) {

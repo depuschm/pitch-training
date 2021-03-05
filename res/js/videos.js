@@ -1,133 +1,10 @@
 const videoParent = document.getElementById("videos");
-const videos = {
-	"A0": [],
-	"A#0": [],
-	"B0": [],
-	
-	"C1": [],
-	"C#1": [],
-	"D1": [],
-	"D#1": [],
-	"E1": [],
-	"F1": [],
-	"F#1": [],
-	"G1": [],
-	"G#1": [],
-	"A1": [],
-	"A#1": [],
-	"B1": [],
-	
-	"C2": [],
-	"C#2": [],
-	"D2": [],
-	"D#2": [],
-	"E2": [],
-	"F2": [],
-	"F#2": [],
-	"G2": [],
-	"G#2": [],
-	"A2": [],
-	"A#2": [],
-	"B2": [],
-	
-	"C3": [],
-	"C#3": [],
-	"D3": [],
-	"D#3": [],
-	"E3": [],
-	"F3": [],
-	"F#3": [],
-	"G3": [],
-	"G#3": [],
-	"A3": [],
-	"A#3": [],
-	"B3": [],
-	
-	"C4": [],
-	"C#4": [
-		"https://www.youtube.com/embed/4HIKME11MUk?start=10&end=14"
-	],
-	"D4": [
-		"https://www.youtube.com/embed/6QW4mQwmxec?start=16&end=22",
-		"https://www.youtube.com/embed/jS_ykANWJlg?start=4&end=10",
-		"https://www.youtube.com/embed/Z98nLn4u158?start=18&end=25"
-	],
-	"D#4": [],
-	"E4": [],
-	"F4": [
-		"https://www.youtube.com/embed/eFVaaRO_KoI?start=1&end=9"
-	],
-	"F#4": [],
-	"G4": [
-		"https://www.youtube.com/embed/r2Sf8_X3R90?start=19&end=26"
-	],
-	"G#4": [
-		"https://www.youtube.com/embed/hiTclNHIZU4?start=30&end=36"
-	],
-	"A4": [
-		"https://www.youtube.com/embed/7nGp7rIpM0E?start=25&end=29"
-	],
-	"A#4": [],
-	"B4": [
-		"https://www.youtube.com/embed/90ZZYY98NPo?start=18&end=26",
-		"https://www.youtube.com/embed/pouxqiySdI8?start=56&end=62"
-	],
-	
-	"C5": [],
-	"C#5": [],
-	"D5": [
-		"https://www.youtube.com/embed/lBcnlJclqxs?start=46&end=54"
-	],
-	"D#5": [],
-	"E5": [
-		"https://www.youtube.com/embed/3jOsHod6zWM?start=7&end=19",
-		"https://www.youtube.com/embed/OzNhUtHutIg?start=3&end=6"
-	],
-	"F5": [],
-	"F#5": [
-		"https://www.youtube.com/embed/UanB-mS1vgk?start=4&end=9"
-	],
-	"G5": [],
-	"G#5": [],
-	"A5": [
-		"https://www.youtube.com/embed/5i-DwAl-rhU?start=1&end=7"
-	],
-	"A#5": [
-		"https://www.youtube.com/embed/UIXthxvnSwY?start=3&end=12"
-	],
-	"B5": [],
-	
-	"C6": [],
-	"C#6": [],
-	"D6": [],
-	"D#6": [],
-	"E6": [],
-	"F6": [],
-	"F#6": [],
-	"G6": [],
-	"G#6": [],
-	"A6": [],
-	"A#6": [],
-	"B6": [],
-	
-	"C7": [],
-	"C#7": [],
-	"D7": [],
-	"D#7": [],
-	"E7": [],
-	"F7": [],
-	"F#7": [],
-	"G7": [],
-	"G#7": [],
-	"A7": [],
-	"A#7": [],
-	"B7": [],
-	
-	"C8": []
-};
+let videos;
 
-let videosCheckbox = document.getElementById("checkboxVideos");
+const videosCheckbox = document.getElementById("checkboxVideos");
 let lastParent, lastNoteIndex, lastOctave;
+
+const selectedFileText = document.getElementById("selectedFile");
 
 function initVideos() {
 	videosCheckbox.addEventListener('change', function() {
@@ -135,6 +12,14 @@ function initVideos() {
 			loadVideos(lastParent, lastNoteIndex, lastOctave);
 		}
 	});
+	loadJSON("default");
+	initSelectButton();
+}
+
+function loadJSON(name) {
+	fetch("res/json/" + name + ".json")
+	.then(response => response.json())
+	.then(json => videos = json);
 }
 
 function loadVideos(parent, noteIndex, octave) {
@@ -166,4 +51,37 @@ function addVideo(parent, sources) {
 		video.frameBorder = 0;
 		parent.appendChild(video);
 	}
+}
+
+// Inspired by: https://web.dev/read-files/
+function initSelectButton() {
+	const buttonSelect = document.getElementById("buttonSelect");
+	const buttonSelectHidden = document.getElementById("buttonSelectHidden");
+	
+	buttonSelect.addEventListener('click', (event) => {
+		buttonSelectHidden.click();
+	});
+	buttonSelectHidden.addEventListener('change', (event) => {
+		const files = event.target.files;
+		const file = files.item(0);
+		
+		// Check if the file is a json file
+		if (file.type && file.type.indexOf('json') === -1) {
+			alert("Wrong format. Select a JSON file!");
+			return;
+		}
+		
+		// Read the file
+		const reader = new FileReader();
+		reader.addEventListener('load', (event) => {
+			let result = event.target.result;
+			let json = JSON.parse(result);
+			videos = json;
+			selectedFileText.innerHTML = file.name;
+			
+			const e = new Event("change");
+			videosCheckbox.dispatchEvent(e);
+		});
+		reader.readAsText(file);
+	});
 }

@@ -1,4 +1,4 @@
-let instrumentSelect = document.getElementById("selectInstrument");
+const instrumentSelect = document.getElementById("selectInstrument");
 let instrument = instrumentSelect.value.split(':');
 
 let generalMIDINumber = instrument[0];
