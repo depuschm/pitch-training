@@ -7,23 +7,38 @@ let lastParent, lastNoteIndex, lastOctave;
 const octaveCheckbox = document.getElementById("checkboxOctave");
 const selectedFileText = document.getElementById("selectedFile");
 
+const videosSelect = document.getElementById("selectVideos");
+const videosDownload = document.getElementById("downloadVideos");
+
 function initVideos() {
 	videosCheckbox.addEventListener('change', function() {
-		if (lastParent != null) {
-			loadVideos(lastParent, lastNoteIndex, lastOctave);
-		}
+		reloadVideos();
 	});
 	octaveCheckbox.addEventListener('change', function() {
-		videosCheckbox.dispatchEvent(new Event("change"));
+		reloadVideos();
 	});
-	loadJSON("default");
+	videosSelect.addEventListener('change', function() {
+		loadJSON(videosSelect.value);
+	});
+	loadJSON(videosSelect.value);
 	initSelectButton();
 }
 
 function loadJSON(name) {
-	fetch("res/json/" + name + ".json")
+	let path = "res/json/" + name + ".json";
+	fetch(path)
 	.then(response => response.json())
-	.then(json => videos = json);
+	.then(json => {
+		videos = json;
+		videosDownload.href = path;
+		reloadVideos();
+	});
+}
+
+function reloadVideos() {
+	if (lastParent != null) {
+		loadVideos(lastParent, lastNoteIndex, lastOctave);
+	}
 }
 
 function loadVideos(parent, noteIndex, octave) {
@@ -93,7 +108,7 @@ function initSelectButton() {
 			let json = JSON.parse(result);
 			videos = json;
 			selectedFileText.innerHTML = file.name;
-			videosCheckbox.dispatchEvent(new Event("change"));
+			reloadVideos();
 		});
 		reader.readAsText(file);
 	});

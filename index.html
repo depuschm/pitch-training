@@ -37,7 +37,7 @@
 		<div class="section">
 			<label for="selectInstrument">Instrument:</label>
 			<select id="selectInstrument">
-				<option value="0:acoustic_grand_piano" selected="selected">Acoustic Grand Piano</option>
+				<option value="0:acoustic_grand_piano" selected>Acoustic Grand Piano</option>
 				<option value="1:bright_acoustic_piano" >Bright Acoustic Piano</option>
 				<option value="2:electric_grand_piano" >Electric Grand Piano</option>
 				<option value="3:honkytonk_piano" >Honky-tonk Piano</option>
@@ -175,15 +175,18 @@
 			<label>Octave-independent:</label>
 			<input id="checkboxOctave" type="checkbox">
 			
-			<label>Download videos:</label>
-			<a href="res/json/empty.json"><button id="buttonEmptyJSON">Empty</button></a>
-			<a href="res/json/default.json"><button id="buttonDefaultJSON">Default</button></a>
-			
 			<label>Select videos:</label>
+			<select id="selectVideos">
+				<option value="empty">Empty</option>
+				<option value="default" selected>Default</option>
+			</select>
+			<a id="downloadVideos" download><button>Download</button></a>
+			
+			<label>From system:</label>
 			<input type="button" id="buttonSelect" value="Choose file..."/>
-			<input type="file" id="buttonSelectHidden" accept=".json" hidden/>
+			<input type="file" id="buttonSelectHidden" accept=".json" hidden>
 			<label id="selectedFile">No file chosen.</label>
-		</div>
+		</div><br>
 		
 		<!--<img src="res/img/not_used/88-key-piano-keyboard-layout.png">-->
 		<div id="buttons">
