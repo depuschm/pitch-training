@@ -1,5 +1,5 @@
 # pitch-training
-A [website](https://rayo3.github.io/pitch-training) designed for perfect pitch training.
+A [website](https://depuschm.github.io/pitch-training) designed for perfect pitch training.
 
 ### Technologies used
 These technologies are used to develop this website:
